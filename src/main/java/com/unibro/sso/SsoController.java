@@ -21,10 +21,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -130,10 +130,10 @@ public class SsoController {
         return new ResponseEntity<>(data, HttpStatus.valueOf(data.status));
     }
 
-    @RequestMapping(value = "/api/sso/token_login/{token}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<ResultData> login(HttpServletRequest request, @PathVariable(value = "token", required = true) String token) {
+    @RequestMapping(value = "/api/sso/login_token", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<ResultData> login(HttpServletRequest request, @RequestParam(value = "token", required = true) String token) {
         logger.info(request.getRequestURI());
-
+        logger.info("Token value:" + token);
         ResultData data = new ResultData();
         data.status = HttpStatus.OK.value();
         data.message = "Success";
