@@ -3,7 +3,8 @@ package com.unibro.user_group;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class User_group implements Serializable {
 
@@ -14,7 +15,7 @@ public class User_group implements Serializable {
     private Integer created_id = 0;
     private String default_groupid="";
 
-    static final Logger logger = Logger.getLogger(User_group.class.getName());
+    static final Logger logger = LogManager.getLogger(User_group.class.getName());
 
     public void setUserid(Integer userid) {
         this.userid = userid;

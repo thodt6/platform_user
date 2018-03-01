@@ -3,7 +3,8 @@ package com.unibro.group;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Group implements Serializable {
 
@@ -18,7 +19,7 @@ public class Group implements Serializable {
     private String application_id = "";
     private String uri;
 
-    static final Logger logger = Logger.getLogger(Group.class.getName());
+    static final Logger logger = LogManager.getLogger(Group.class.getName());
 
     public void setGroupid(Integer groupid) {
         this.groupid = groupid;

@@ -14,12 +14,14 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,7 +35,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SsoController {
 
-    Logger logger = Logger.getLogger(this.getClass().getName());
+    Logger logger = LogManager.getLogger(this.getClass().getName());
 
     @ExceptionHandler(UserDAOException.class)
     @ResponseStatus(HttpStatus.OK)
@@ -124,6 +126,43 @@ public class SsoController {
         }
         if (data.status != 200) {
             data.message = "Error";
+        }
+        return new ResponseEntity<>(data, HttpStatus.valueOf(data.status));
+    }
+
+    @RequestMapping(value = "/api/sso/token_login/{token}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<ResultData> login(HttpServletRequest request, @PathVariable(value = "token", required = true) String token) {
+        logger.info(request.getRequestURI());
+
+        ResultData data = new ResultData();
+        data.status = HttpStatus.OK.value();
+        data.message = "Success";
+        data.exception = "";
+        data.error = "";
+        data.path = request.getRequestURL().toString();
+        UserDAOImpl dao = (UserDAOImpl) Application.context.getBean("userDAO");
+        User u = dao.getObjectByUserField("login_token", token);
+        if (u == null) {
+            dao.setExceptionCode(HttpStatus.NOT_FOUND);
+            data.status = HttpStatus.NOT_FOUND.value();
+            data.message = "Fail";
+            data.exception = "";
+            data.error = "User not found";
+        } else {
+            if (!u.checkValidSession()) {
+                dao.setExceptionCode(HttpStatus.LOCKED);
+                data.status = HttpStatus.LOCKED.value();
+                data.message = "Token Expired. Please login again";
+                data.exception = "";
+                data.error = "Authentication fail. Token Expired";
+            } else {
+                dao.setExceptionCode(HttpStatus.OK);
+                data.status = HttpStatus.OK.value();
+                data.message = "Success";
+                data.error = "";
+                data.exception = "";
+                data.result = u.getLogin_token();
+            }
         }
         return new ResponseEntity<>(data, HttpStatus.valueOf(data.status));
     }

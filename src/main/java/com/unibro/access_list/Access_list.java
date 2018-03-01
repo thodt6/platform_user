@@ -3,7 +3,8 @@ package com.unibro.access_list;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Access_list implements Serializable {
 
@@ -18,7 +19,7 @@ public class Access_list implements Serializable {
     private Integer update_id = 0;
     private String application_id;
 
-    static final Logger logger = Logger.getLogger(Access_list.class.getName());
+    static final Logger logger = LogManager.getLogger(Access_list.class.getName());
 
     public void setAccess_id(Integer access_id) {
         this.access_id = access_id;

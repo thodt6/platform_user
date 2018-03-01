@@ -5,7 +5,8 @@
  */
 package com.unibro.utils;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *
@@ -14,7 +15,7 @@ import org.apache.log4j.Logger;
 public class RequiredException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
-    static Logger logger = Logger.getLogger(RequiredException.class.getName());
+    static Logger logger = LogManager.getLogger(RequiredException.class.getName());
 
     public RequiredException(String msg) {
         super(msg);

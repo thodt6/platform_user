@@ -12,7 +12,8 @@ import com.unibro.utils.RequiredException;
 import com.unibro.utils.ResultData;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GroupController {
 
-    Logger logger = Logger.getLogger(this.getClass().getName());
+    Logger logger = LogManager.getLogger(this.getClass().getName());
 
     @ExceptionHandler(GroupDAOException.class)
     @ResponseStatus(HttpStatus.OK)

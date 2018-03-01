@@ -6,7 +6,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.unibro.utils.Global;
 import java.io.Serializable;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class User implements Serializable {
 
@@ -39,7 +40,7 @@ public class User implements Serializable {
     private String password_reset_token = "";
     private String application_id = "";
 
-    static final Logger logger = Logger.getLogger(User.class.getName());
+    static final Logger logger = LogManager.getLogger(User.class.getName());
 
     public void setUserid(Integer userid) {
         this.userid = userid;
@@ -314,8 +315,6 @@ public class User implements Serializable {
         if (this.getLogin_token().equals("")) {
             return false;
         }
-        logger.info("current time:" + System.currentTimeMillis());
-        logger.info("expired time:" + this.getExpired_time());
         if (this.getExpired_time() <= System.currentTimeMillis()) {
             return false;
         }

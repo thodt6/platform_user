@@ -20,7 +20,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.imageio.ImageIO;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *
@@ -28,7 +29,7 @@ import org.apache.log4j.Logger;
  */
 public class Global {
 
-    private static final Logger logger = Logger.getLogger(Global.class.getName());
+    private static final Logger logger = LogManager.getLogger(Global.class.getName());
 
     public static ClassLoader getCurrentClassLoader(Object defaultObject) {
         ClassLoader loader = Thread.currentThread().getContextClassLoader();

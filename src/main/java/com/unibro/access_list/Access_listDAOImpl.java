@@ -21,7 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.sql.DataSource;
 import org.apache.http.HttpHost;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.action.get.GetRequest;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.search.SearchRequest;
@@ -47,7 +48,7 @@ public class Access_listDAOImpl implements Access_listDAO {
 
     private DataSource dataSource;
     private JdbcTemplate jdbcTemplateObject;
-    Logger logger = Logger.getLogger(this.getClass().getName());
+    Logger logger = LogManager.getLogger(this.getClass().getName());
     private String exceptionMsg = "";
     private HttpStatus exceptionCode = HttpStatus.OK;
     private String exceptionType = "";

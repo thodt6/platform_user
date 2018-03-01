@@ -4,7 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.unibro.utils.Global;
 import java.io.Serializable;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Application implements Serializable {
 
@@ -15,7 +16,7 @@ public class Application implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.Z")
     private java.util.Date update_time = new java.util.Date();
 
-    static final Logger logger = Logger.getLogger(Application.class.getName());
+    static final Logger logger = LogManager.getLogger(Application.class.getName());
 
     public void setAppid(String appid) {
         this.appid = appid;

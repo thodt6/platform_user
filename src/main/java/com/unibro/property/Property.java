@@ -4,7 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.unibro.utils.Global;
 import java.io.Serializable;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Property implements Serializable {
 
@@ -18,7 +19,7 @@ public class Property implements Serializable {
     private Integer created_id = 0;
     private String application_id = "";
 
-    static final Logger logger = Logger.getLogger(Property.class.getName());
+    static final Logger logger = LogManager.getLogger(Property.class.getName());
 
     public void setProp_id(String prop_id) {
         this.prop_id = prop_id;
