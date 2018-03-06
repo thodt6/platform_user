@@ -166,5 +166,44 @@ public class SsoController {
         }
         return new ResponseEntity<>(data, HttpStatus.valueOf(data.status));
     }
+    
+    @RequestMapping(value = "/api/sso/user_profile", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<ResultData> user_profile(HttpServletRequest request, @RequestParam(value = "token", required = true) String token) {
+        logger.info(request.getRequestURI());
+        logger.info("Token value:" + token);
+        ResultData data = new ResultData();
+        data.status = HttpStatus.OK.value();
+        data.message = "Success";
+        data.exception = "";
+        data.error = "";
+        data.path = request.getRequestURL().toString();
+        UserDAOImpl dao = (UserDAOImpl) Application.context.getBean("userDAO");
+        User u = dao.getObjectByUserField("login_token", token);
+        if (u == null) {
+            dao.setExceptionCode(HttpStatus.NOT_FOUND);
+            data.status = HttpStatus.NOT_FOUND.value();
+            data.message = "Fail";
+            data.exception = "";
+            data.error = "User not found";
+        } else {
+            if (!u.checkValidSession()) {
+                dao.setExceptionCode(HttpStatus.LOCKED);
+                data.status = HttpStatus.LOCKED.value();
+                data.message = "Token Expired. Please login again";
+                data.exception = "";
+                data.error = "Authentication fail. Token Expired";
+            } else {
+                dao.setExceptionCode(HttpStatus.OK);
+                data.status = HttpStatus.OK.value();
+                data.message = "Success";
+                data.error = "";
+                data.exception = "";
+                data.result = u;
+            }
+        }
+        return new ResponseEntity<>(data, HttpStatus.valueOf(data.status));
+    }
+    
+    
 
 }
