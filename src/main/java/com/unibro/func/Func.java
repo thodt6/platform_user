@@ -14,7 +14,7 @@ public class Func implements Serializable {
     private String description = "";
     private String uri = "";
     private Integer created_id = 0;
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.Z")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
     private java.util.Date update_time = new java.util.Date();
     private String application_id = "";
 

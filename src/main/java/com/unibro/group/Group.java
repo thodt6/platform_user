@@ -11,9 +11,9 @@ public class Group implements Serializable {
     private Integer groupid = 0;
     private String name = "";
     private String description = "";
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.Z")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
     private java.util.Date created_time = new java.util.Date();
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.Z")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
     private java.util.Date modified_time = new java.util.Date();
     private Integer created_id = 0;
     private String application_id = "";

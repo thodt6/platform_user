@@ -14,7 +14,7 @@ public class Property implements Serializable {
     private String uri = "";
     private Integer type = 0;
     private String func_id = "";
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.Z")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
     private java.util.Date update_time = new java.util.Date();
     private Integer created_id = 0;
     private String application_id = "";

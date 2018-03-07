@@ -13,7 +13,7 @@ public class Application implements Serializable {
     private String name = "";
     private String description = "";
     private Integer update_id = 0;
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.Z")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
     private java.util.Date update_time = new java.util.Date();
 
     static final Logger logger = LogManager.getLogger(Application.class.getName());

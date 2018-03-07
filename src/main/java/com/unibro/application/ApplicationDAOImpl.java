@@ -291,7 +291,7 @@ public class ApplicationDAOImpl implements ApplicationDAO {
                 GetResponse response = client.get(request);
                 if (!response.isSourceEmpty()) {
                     rest.close();
-                    Gson gson = Global.getGsonObject("yyyy-MM-dd'T'HH:mm:ss.Z");
+                    Gson gson = Global.getGsonObject("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
                     return gson.fromJson(response.getSourceAsString(), Application.class);
                 } else {
                     rest.close();
@@ -368,7 +368,7 @@ public class ApplicationDAOImpl implements ApplicationDAO {
                 logger.info(searchBuilder.toString());
                 SearchResponse response = client.search(searchRequest);
                 SearchHits hits = response.getHits();
-                Gson gson = Global.getGsonObject("yyyy-MM-dd'T'HH:mm:ss.Z");
+                Gson gson = Global.getGsonObject("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
                 List ret = new ArrayList();
                 if (hits.getTotalHits() > 0) {
                     for (SearchHit hit : hits.getHits()) {

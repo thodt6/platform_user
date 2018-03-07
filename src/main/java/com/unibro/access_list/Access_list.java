@@ -14,7 +14,7 @@ public class Access_list implements Serializable {
     private String principle_type = "";
     private Integer principle_id = 0;
     private Integer permission =0;
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.Z")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
     private java.util.Date update_time = new java.util.Date();
     private Integer update_id = 0;
     private String application_id;

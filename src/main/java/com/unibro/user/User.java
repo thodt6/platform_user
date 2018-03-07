@@ -26,13 +26,13 @@ public class User implements Serializable {
     private String state = "";
     private String city = "";
     private String post_code = "";
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.Z")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
     private java.util.Date created_time = new java.util.Date();
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.Z")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
     private java.util.Date modified_time = new java.util.Date();
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.Z")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
     private java.util.Date last_login = new java.util.Date();
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.Z")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
     private java.util.Date last_logout = new java.util.Date();
     private Integer status = 0;
     private String login_token = "";
@@ -322,7 +322,7 @@ public class User implements Serializable {
     }
 
     public String toJsonString() {
-        Gson gson = Global.getGsonObject("yyyy-MM-dd'T'HH:mm:ss.Z");
+        Gson gson = Global.getGsonObject("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
         JsonObject obj = gson.toJsonTree(this).getAsJsonObject();
         obj.remove("login_token");
         obj.remove("password_reset_token");
